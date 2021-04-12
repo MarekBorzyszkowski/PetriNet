@@ -12,9 +12,21 @@ public class Edge {
 		this.place = place;
 		this.transaction = transaction;
 		this.direction = direction;
+		if(direction == Direction.TO_PLACE)
+			transaction.addOutgoing(this);
+		if(direction == Direction.TO_TRANSACTION)
+			transaction.addIncoming(this);
 	}
 
 	public Edge(Place place, Transaction transaction, Direction direction) {
 		this(1, place, transaction, direction);
+	}
+
+	@Override
+	public String toString() {
+		return "value=" + valueAttribute +
+				", place=" + place.getName() +
+				", transaction=" + transaction.getName() +
+				", direction=" + direction ;
 	}
 }

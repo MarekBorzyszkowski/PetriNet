@@ -8,4 +8,9 @@ public class Regular extends Edge{
 	public Regular(Place place, Transaction transaction, Direction direction) {
 		super(place, transaction, direction);
 	}
+
+	@Override
+	public String toString() {
+		return "Regular{" + super.toString() +"}";
+	}
 }

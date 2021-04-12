@@ -8,4 +8,9 @@ public class Inhibitor extends Edge{
 	public Inhibitor(Place place, Transaction transaction, Direction direction) {
 		super(place, transaction, direction);
 	}
+
+	@Override
+	public String toString() {
+		return "Inhibitor{ "+ super.toString() + " }";
+	}
 }
