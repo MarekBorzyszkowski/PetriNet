@@ -22,6 +22,22 @@ public class Edge {
 		this(1, place, transaction, direction);
 	}
 
+	public int getValueAttribute() {
+		return valueAttribute;
+	}
+
+	public Place getPlace() {
+		return place;
+	}
+
+	public Transaction getTransaction() {
+		return transaction;
+	}
+
+	public Direction getDirection() {
+		return direction;
+	}
+
 	public boolean canExecute() {
 		if(direction.equals(Direction.TO_TRANSACTION))
 			return place.getNumberOfTokens() >= this.valueAttribute;
