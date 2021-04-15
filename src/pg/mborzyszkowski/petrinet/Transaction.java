@@ -20,6 +20,28 @@ public class Transaction extends Node{
 		this.outgoing.add(edge);
 	}
 
+	public boolean isNotConnected(){
+		return incoming.isEmpty() && outgoing.isEmpty();
+	}
+
+	public boolean canExecute(){
+		if (! isNotConnected())
+			return false;
+		else
+			return this.incoming.stream()
+						.map(e -> e.canExecute())
+						.reduce(true, (result, edgeCanExecute)  -> result & edgeCanExecute)
+					&
+					this.outgoing.stream()
+							.map(e -> e.canExecute())
+							.reduce(true, (result, edgeCanExecute)  -> result & edgeCanExecute);
+	}
+
+	public void execute(){
+		this.incoming.stream().forEach(edge -> edge.execute());
+		this.outgoing.stream().forEach(edge -> edge.execute());
+	}
+
 	@Override
 	public String toString() {
 		return "\n\t\tTransaction{" +

@@ -5,6 +5,8 @@ import pg.mborzyszkowski.petrinet.PetriNet;
 import pg.mborzyszkowski.petrinet.Place;
 import pg.mborzyszkowski.petrinet.Transaction;
 
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -22,5 +24,9 @@ public class Main {
         petriNet.addRegular(1, r, recovery, Direction.TO_PLACE);
 
         System.out.println(petriNet);
+
+        List<Transaction> execTrx = petriNet.getExecutableTransactions();
+        System.out.println(execTrx);
+
     }
 }

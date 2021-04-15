@@ -22,6 +22,22 @@ public class Edge {
 		this(1, place, transaction, direction);
 	}
 
+	public boolean canExecute() {
+		if(direction.equals(Direction.TO_TRANSACTION))
+			return place.getNumberOfTokens() >= this.valueAttribute;
+		else if(direction.equals(Direction.TO_PLACE))
+			return true;
+		else
+			return false;
+	}
+
+	public void execute() {
+		if(direction.equals(Direction.TO_TRANSACTION))
+			place.setNumberOfTokens(place.getNumberOfTokens() - valueAttribute);
+		if(direction.equals(Direction.TO_PLACE))
+			place.setNumberOfTokens(place.getNumberOfTokens() + valueAttribute);
+	}
+
 	@Override
 	public String toString() {
 		return "value=" + valueAttribute +
@@ -29,4 +45,5 @@ public class Edge {
 				", transaction=" + transaction.getName() +
 				", direction=" + direction ;
 	}
+
 }

@@ -1,6 +1,7 @@
 package pg.mborzyszkowski.petrinet;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PetriNet {
 
@@ -31,6 +32,12 @@ public class PetriNet {
 		Inhibitor i = new Inhibitor(valueAttribute, place, transaction, direction);
 		inhibitors.add(i);
 		return i;
+	}
+
+	public List<Transaction> getExecutableTransactions() {
+		return transactions.stream()
+				.filter(tr -> tr.canExecute())
+				.collect(Collectors.toList());
 	}
 
 	@Override
