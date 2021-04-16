@@ -1,7 +1,7 @@
 package pg.mborzyszkowski.petrinet;
 
 public class Place extends Node{
-	private int numberOfTokens;
+	private double numberOfTokens;
 
 	public Place(String name, int numberOfTokens) {
 		super(name);
@@ -12,11 +12,11 @@ public class Place extends Node{
 		super(name);
 	}
 
-	public int getNumberOfTokens() {
+	public double getNumberOfTokens() {
 		return numberOfTokens;
 	}
 
-	public void setNumberOfTokens(int numberOfTokens) {
+	public void setNumberOfTokens(double numberOfTokens) {
 		this.numberOfTokens = numberOfTokens;
 	}
 

@@ -6,21 +6,19 @@ import pg.mborzyszkowski.petrinet.stochastic.StochasticTransaction;
 
 import java.util.List;
 
-public class MainFirst {
+public class MainFirstStochastic {
 
     public static void main(String[] args) {
-        /**
-         * Run params:
-         *      args[1] = S
-         *      args[2] = I
-         *      args[3] = R
-         */
+        int S  = 999;
+        int I  = 1;
+        int R  = 0;
+
         StochasticPetriNet petriNet =  new StochasticPetriNet();
-        Place s = petriNet.addPlace("S", Integer.parseInt(args[1]));
+        Place s = petriNet.addPlace(new Place("S", S));
         Transaction infection = petriNet.addTransaction(new StochasticTransaction("infection", 0.00025));
-        Place i = petriNet.addPlace("I", Integer.parseInt(args[2]));
+        Place i = petriNet.addPlace(new Place("I", I));
         Transaction recovery = petriNet.addTransaction(new StochasticTransaction("recovery", 0.1));
-        Place r = petriNet.addPlace("R", Integer.parseInt(args[3]));
+        Place r = petriNet.addPlace(new Place("R", R));
 
         petriNet.addRegular(1, s, infection, Direction.TO_TRANSACTION);
         petriNet.addRegular(1, i, infection, Direction.TO_TRANSACTION);

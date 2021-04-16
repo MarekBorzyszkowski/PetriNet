@@ -12,10 +12,9 @@ public abstract class PetriNet<TR extends Transaction> {
 	private List<Regular> regulars = new ArrayList<>();
 	private List<Inhibitor> inhibitors = new ArrayList<>();
 
-	public Place addPlace(String name, int numberOfTokens){
-		Place p = new Place(name,numberOfTokens);
-		places.add(p);
-		return p;
+	public Place addPlace(Place place){
+		places.add(place);
+		return place;
 	}
 
 	public List<Place> getPlaces() {

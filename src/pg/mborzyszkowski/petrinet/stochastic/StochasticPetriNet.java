@@ -1,6 +1,7 @@
 package pg.mborzyszkowski.petrinet.stochastic;
 
 import pg.mborzyszkowski.petrinet.PetriNet;
+import pg.mborzyszkowski.petrinet.Place;
 import pg.mborzyszkowski.petrinet.Transaction;
 
 import java.util.ArrayList;

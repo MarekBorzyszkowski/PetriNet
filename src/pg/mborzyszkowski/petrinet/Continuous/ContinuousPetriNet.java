@@ -1,7 +1,6 @@
 package pg.mborzyszkowski.petrinet.Continuous;
 
 import pg.mborzyszkowski.petrinet.*;
-import pg.mborzyszkowski.petrinet.stochastic.StochasticTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class ContinuousPetriNet extends PetriNet<ContinuousTransaction> {
 		for(Place pl : getPlaces()) {
 			regularsForPlace = new ArrayList<>();
 			for (Regular reg : getRegulars()){
-				if (reg.getPlace() == pl)
+				if ((reg.getPlace()) == pl)
 					regularsForPlace.add(reg);
 			}
 			derivatives.add(0.0);
@@ -43,7 +42,14 @@ public class ContinuousPetriNet extends PetriNet<ContinuousTransaction> {
 			}
 			idx++;
 		}
-
+		idx = 0;
+		for(Place pl : getPlaces()) {
+			if(derivatives.get(idx) + pl.getNumberOfTokens() >= 0)
+				pl.setNumberOfTokens(derivatives.get(idx) + pl.getNumberOfTokens());
+			else
+				pl.setNumberOfTokens(0);
+			idx++;
+		}
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package pg.mborzyszkowski.petrinet;
 
-public class Node {
+public abstract class Node {
 	private String name;
 
 	public Node(String name) {
