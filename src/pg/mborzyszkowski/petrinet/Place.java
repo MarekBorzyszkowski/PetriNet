@@ -1,5 +1,7 @@
 package pg.mborzyszkowski.petrinet;
 
+// TODO: Change double into Number class, and make Place Decoration
+
 public class Place extends Node{
 	private double numberOfTokens;
 

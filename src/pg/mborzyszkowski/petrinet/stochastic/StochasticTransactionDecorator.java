@@ -1,22 +1,22 @@
 package pg.mborzyszkowski.petrinet.stochastic;
 
-import java.util.*;
+import pg.mborzyszkowski.petrinet.Edge;
+import pg.mborzyszkowski.petrinet.simple.ITransaction;
+import pg.mborzyszkowski.petrinet.simple.TransactionDecorator;
+
+import java.util.List;
 import java.util.stream.Collectors;
 
-import pg.mborzyszkowski.petrinet.Edge;
-import pg.mborzyszkowski.petrinet.Place;
-import pg.mborzyszkowski.petrinet.Transaction;
+public class StochasticTransactionDecorator extends TransactionDecorator {
+	private final double parameter;
 
-public class StochasticTransaction extends Transaction {
-	private double parameter;
-
-	public StochasticTransaction(String name, double parameter) {
-		super(name);
+	public StochasticTransactionDecorator(ITransaction transaction, double parameter) {
+		super(transaction);
 		this.parameter = parameter;
 	}
 
 	public double getLambda(){
-		double lambda=parameter;
+		double lambda = parameter;
 		List<Edge> outgoingFromTransaction;
 		for(Edge inEdge : getIncoming()){
 			outgoingFromTransaction = getOutgoing().stream().filter(edge -> edge.getPlace() == inEdge.getPlace()).collect(Collectors.toList());

@@ -1,19 +1,17 @@
 package pg.mborzyszkowski.petrinet.stochastic;
 
 import pg.mborzyszkowski.petrinet.PetriNet;
-import pg.mborzyszkowski.petrinet.Place;
-import pg.mborzyszkowski.petrinet.Transaction;
+import pg.mborzyszkowski.petrinet.simple.Transaction;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 //
-public class StochasticPetriNet extends PetriNet<StochasticTransaction> {
+public class StochasticPetriNet extends PetriNet<StochasticTransactionDecorator> {
 
-	public StochasticTransaction getTransactionToExecute(){
-		List<StochasticTransaction> transactions = this.getActiveTransactions();
+	public StochasticTransactionDecorator getTransactionToExecute(){
+		List<StochasticTransactionDecorator> transactions = this.getActiveTransactions();
 		List<Double> lambdas = this.getActiveTransactions().stream()
 				.map(trx -> trx.getLambda())
 				.collect(Collectors.toList());
@@ -33,12 +31,11 @@ public class StochasticPetriNet extends PetriNet<StochasticTransaction> {
 	}
 
 
-	public StochasticTransaction addTransaction(String name, double parametr) {
-		StochasticTransaction t = new StochasticTransaction(name, parametr);
-		super.addTransaction(new StochasticTransaction(name, parametr));
+	public StochasticTransactionDecorator addTransaction(String name, double parametr) {
+		StochasticTransactionDecorator t = new StochasticTransactionDecorator(new Transaction(name), parametr);
+		super.addTransaction(new StochasticTransactionDecorator(new Transaction(name), parametr));
 		return t;
 	}
-
 
 	@Override
 	public String toString() {

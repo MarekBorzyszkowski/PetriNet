@@ -1,4 +1,6 @@
 package pg.mborzyszkowski.petrinet;
 
-public class SimplePetriNet extends PetriNet<Transaction>{
+import pg.mborzyszkowski.petrinet.simple.Transaction;
+
+public class SimplePetriNet extends PetriNet{
 }

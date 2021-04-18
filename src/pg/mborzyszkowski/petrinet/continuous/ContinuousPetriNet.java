@@ -1,23 +1,24 @@
-package pg.mborzyszkowski.petrinet.Continuous;
+package pg.mborzyszkowski.petrinet.continuous;
 
 import pg.mborzyszkowski.petrinet.*;
+import pg.mborzyszkowski.petrinet.simple.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContinuousPetriNet extends PetriNet<ContinuousTransaction> {
+public class ContinuousPetriNet extends PetriNet<CountinuousTransactionDecorator> {
 
 
-	public ContinuousTransaction addTransaction(String name, double parametr) {
-		ContinuousTransaction t = new ContinuousTransaction(name, parametr);
-		super.addTransaction(new ContinuousTransaction(name, parametr));
+	public CountinuousTransactionDecorator addTransaction(String name, double parametr) {
+		CountinuousTransactionDecorator t = new CountinuousTransactionDecorator(new Transaction(name), parametr);
+		super.addTransaction(t);
 		return t;
 	}
 
 	public void executeContinousTransactions(){
 		List<Regular> regularsForPlace;
 		List<Double> derivatives = new ArrayList<>();
-		ContinuousTransaction t;
+		CountinuousTransactionDecorator t;
 		double mult = 0;
 		int idx = 0;
 		for(Place pl : getPlaces()) {
@@ -28,7 +29,7 @@ public class ContinuousPetriNet extends PetriNet<ContinuousTransaction> {
 			}
 			derivatives.add(0.0);
 			for (Regular reg : regularsForPlace){
-				t = (ContinuousTransaction) reg.getTransaction();
+				t = (CountinuousTransactionDecorator) reg.getTransaction();
 				mult = 1.0;
 				for(Edge edge : t.getIncoming())
 					mult *= edge.getPlace().getNumberOfTokens();

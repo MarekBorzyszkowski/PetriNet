@@ -1,13 +1,16 @@
 package pg.mborzyszkowski.petrinet;
 
+import pg.mborzyszkowski.petrinet.simple.ITransaction;
+import pg.mborzyszkowski.petrinet.simple.Transaction;
+
 public class Edge {
 	private int valueAttribute;
 
 	private Place place;
-	private Transaction transaction;
+	private ITransaction transaction;
 	private Direction direction;
 
-	public Edge(int valueAttribute, Place place, Transaction transaction, Direction direction) {
+	public Edge(int valueAttribute, Place place, ITransaction transaction, Direction direction) {
 		this.valueAttribute = valueAttribute;
 		this.place = place;
 		this.transaction = transaction;
@@ -18,7 +21,7 @@ public class Edge {
 			transaction.addIncoming(this);
 	}
 
-	public Edge(Place place, Transaction transaction, Direction direction) {
+	public Edge(Place place, ITransaction transaction, Direction direction) {
 		this(1, place, transaction, direction);
 	}
 
@@ -30,7 +33,7 @@ public class Edge {
 		return place;
 	}
 
-	public Transaction getTransaction() {
+	public ITransaction getTransaction() {
 		return transaction;
 	}
 

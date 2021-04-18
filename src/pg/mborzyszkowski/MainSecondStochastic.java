@@ -1,11 +1,11 @@
 package pg.mborzyszkowski;
 
-import pg.mborzyszkowski.petrinet.Continuous.ContinuousTransaction;
 import pg.mborzyszkowski.petrinet.Direction;
 import pg.mborzyszkowski.petrinet.Place;
-import pg.mborzyszkowski.petrinet.Transaction;
+import pg.mborzyszkowski.petrinet.simple.ITransaction;
+import pg.mborzyszkowski.petrinet.simple.Transaction;
 import pg.mborzyszkowski.petrinet.stochastic.StochasticPetriNet;
-import pg.mborzyszkowski.petrinet.stochastic.StochasticTransaction;
+import pg.mborzyszkowski.petrinet.stochastic.StochasticTransactionDecorator;
 
 public class MainSecondStochastic {
 
@@ -17,13 +17,13 @@ public class MainSecondStochastic {
 
         StochasticPetriNet petriNet =  new StochasticPetriNet();
         Place s = petriNet.addPlace(new Place("S", S));
-        Transaction infection = petriNet.addTransaction(new StochasticTransaction("infection", 0.00025));
+        ITransaction infection = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("infection"), 0.00025));
         Place i = petriNet.addPlace(new Place("I", I));
-        Transaction recovery = petriNet.addTransaction(new StochasticTransaction("recovery", 0.1));
+        ITransaction recovery = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("recovery"), 0.1));
         Place r = petriNet.addPlace(new Place("R", R));
         Place v = petriNet.addPlace(new Place("V", V));
-        Transaction vaccination = petriNet.addTransaction(new StochasticTransaction("vaccination", 0.01));
-        Transaction vinfection = petriNet.addTransaction(new StochasticTransaction("vinfection", 0.0000375));
+        ITransaction vaccination = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("vaccination"), 0.01));
+        ITransaction vinfection = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("vinfection"), 0.0000375));
 
         petriNet.addRegular(1, s, infection, Direction.TO_TRANSACTION);
         petriNet.addRegular(1, i, infection, Direction.TO_TRANSACTION);
