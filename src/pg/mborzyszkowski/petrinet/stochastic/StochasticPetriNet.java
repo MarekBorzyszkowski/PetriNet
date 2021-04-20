@@ -1,14 +1,14 @@
 package pg.mborzyszkowski.petrinet.stochastic;
 
-import pg.mborzyszkowski.petrinet.PetriNet;
-import pg.mborzyszkowski.petrinet.simple.Transaction;
+import pg.mborzyszkowski.petrinet.generic.PetriNet;
+import pg.mborzyszkowski.petrinet.generic.transaction.Transaction;
 
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 //
-public class StochasticPetriNet extends PetriNet<StochasticTransactionDecorator> {
+public class StochasticPetriNet extends PetriNet<StochasticTransactionDecorator, StochasticPlace> {
 
 	public StochasticTransactionDecorator getTransactionToExecute(){
 		List<StochasticTransactionDecorator> transactions = this.getActiveTransactions();

@@ -1,11 +1,11 @@
-package pg.mborzyszkowski.petrinet;
+package pg.mborzyszkowski.petrinet.generic.place;
 
-// TODO: Change double into Number class, and make Place Decoration
+import pg.mborzyszkowski.petrinet.generic.Node;
 
-public class Place extends Node{
-	private double numberOfTokens;
+public abstract class Place extends Node {
+	private Number numberOfTokens;
 
-	public Place(String name, int numberOfTokens) {
+	public Place(String name, Number numberOfTokens) {
 		super(name);
 		this.numberOfTokens = numberOfTokens;
 	}
@@ -14,11 +14,11 @@ public class Place extends Node{
 		super(name);
 	}
 
-	public double getNumberOfTokens() {
+	public Number getNumberOfTokens() {
 		return numberOfTokens;
 	}
 
-	public void setNumberOfTokens(double numberOfTokens) {
+	public void setNumberOfTokens(Number numberOfTokens) {
 		this.numberOfTokens = numberOfTokens;
 	}
 

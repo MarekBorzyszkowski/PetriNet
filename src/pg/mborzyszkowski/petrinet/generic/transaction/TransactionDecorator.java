@@ -1,23 +1,24 @@
-package pg.mborzyszkowski.petrinet.simple;
+package pg.mborzyszkowski.petrinet.generic.transaction;
 
-import pg.mborzyszkowski.petrinet.Edge;
+import pg.mborzyszkowski.petrinet.generic.edge.Edge;
+import pg.mborzyszkowski.petrinet.generic.place.Place;
 
 import java.util.List;
 
-public class TransactionDecorator implements ITransaction{
-	protected ITransaction transaction;
+public class TransactionDecorator<PL extends Place> implements ITransaction<PL> {
+	protected ITransaction<PL> transaction;
 
-	public TransactionDecorator(ITransaction transaction) {
+	public TransactionDecorator(ITransaction<PL> transaction) {
 		this.transaction = transaction;
 	}
 
 	@Override
-	public List<Edge> getIncoming() {
+	public List<Edge<PL>> getIncoming() {
 		return transaction.getIncoming();
 	}
 
 	@Override
-	public List<Edge> getOutgoing() {
+	public List<Edge<PL>> getOutgoing() {
 		return transaction.getOutgoing();
 	}
 
@@ -27,12 +28,12 @@ public class TransactionDecorator implements ITransaction{
 	}
 
 	@Override
-	public void addIncoming(Edge edge) {
+	public void addIncoming(Edge<PL> edge) {
 		transaction.addIncoming(edge);
 	}
 
 	@Override
-	public void addOutgoing(Edge edge) {
+	public void addOutgoing(Edge<PL> edge) {
 		transaction.addOutgoing(edge);
 	}
 

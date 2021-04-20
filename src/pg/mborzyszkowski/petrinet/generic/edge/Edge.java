@@ -1,16 +1,16 @@
-package pg.mborzyszkowski.petrinet;
+package pg.mborzyszkowski.petrinet.generic.edge;
 
-import pg.mborzyszkowski.petrinet.simple.ITransaction;
-import pg.mborzyszkowski.petrinet.simple.Transaction;
+import pg.mborzyszkowski.petrinet.generic.place.Place;
+import pg.mborzyszkowski.petrinet.generic.transaction.ITransaction;
 
-public class Edge {
+public class Edge<PL extends Place> {
 	private int valueAttribute;
 
-	private Place place;
+	private PL place;
 	private ITransaction transaction;
 	private Direction direction;
 
-	public Edge(int valueAttribute, Place place, ITransaction transaction, Direction direction) {
+	public Edge(int valueAttribute, PL place, ITransaction transaction, Direction direction) {
 		this.valueAttribute = valueAttribute;
 		this.place = place;
 		this.transaction = transaction;
@@ -21,7 +21,7 @@ public class Edge {
 			transaction.addIncoming(this);
 	}
 
-	public Edge(Place place, ITransaction transaction, Direction direction) {
+	public Edge(PL place, ITransaction transaction, Direction direction) {
 		this(1, place, transaction, direction);
 	}
 
@@ -43,7 +43,7 @@ public class Edge {
 
 	public boolean canExecute() {
 		if(direction.equals(Direction.TO_TRANSACTION))
-			return place.getNumberOfTokens() >= this.valueAttribute;
+			return place.getNumberOfTokens().doubleValue() >= this.valueAttribute;
 		else if(direction.equals(Direction.TO_PLACE))
 			return true;
 		else
@@ -52,9 +52,9 @@ public class Edge {
 
 	public void execute() {
 		if(direction.equals(Direction.TO_TRANSACTION))
-			place.setNumberOfTokens(place.getNumberOfTokens() - valueAttribute);
+			place.setNumberOfTokens(place.getNumberOfTokens().doubleValue() - valueAttribute);
 		if(direction.equals(Direction.TO_PLACE))
-			place.setNumberOfTokens(place.getNumberOfTokens() + valueAttribute);
+			place.setNumberOfTokens(place.getNumberOfTokens().doubleValue() + valueAttribute);
 	}
 
 	@Override

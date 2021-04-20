@@ -1,38 +1,39 @@
-package pg.mborzyszkowski.petrinet.simple;
+package pg.mborzyszkowski.petrinet.generic.transaction;
 
-import pg.mborzyszkowski.petrinet.Direction;
-import pg.mborzyszkowski.petrinet.Edge;
-import pg.mborzyszkowski.petrinet.Node;
+import pg.mborzyszkowski.petrinet.generic.edge.Direction;
+import pg.mborzyszkowski.petrinet.generic.edge.Edge;
+import pg.mborzyszkowski.petrinet.generic.Node;
+import pg.mborzyszkowski.petrinet.generic.place.Place;
 
 import java.util.*;
 
-public class Transaction extends Node implements ITransaction {
+public class Transaction<PL extends Place> extends Node implements ITransaction<PL> {
 
-	private List<Edge> incoming = new ArrayList<>();
-	private List<Edge> outgoing = new ArrayList<>();
+	private final List<Edge<PL>> incoming = new ArrayList<>();
+	private final List<Edge<PL>> outgoing = new ArrayList<>();
 
 	public Transaction(String name) {
 		super(name);
 	}
 
 	@Override
-	public List<Edge> getIncoming() {
+	public List<Edge<PL>> getIncoming() {
 		return incoming;
 	}
 
 	@Override
-	public List<Edge> getOutgoing() {
+	public List<Edge<PL>> getOutgoing() {
 		return outgoing;
 	}
 
 	@Override
-	public void addIncoming(Edge edge){
+	public void addIncoming(Edge<PL> edge){
 		if(edge.getDirection().equals(Direction.TO_TRANSACTION))
 			this.incoming.add(edge);
 	}
 
 	@Override
-	public void addOutgoing(Edge edge){
+	public void addOutgoing(Edge<PL> edge){
 		this.outgoing.add(edge);
 	}
 

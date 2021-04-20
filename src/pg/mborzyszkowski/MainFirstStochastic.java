@@ -1,9 +1,10 @@
 package pg.mborzyszkowski;
 
-import pg.mborzyszkowski.petrinet.*;
-import pg.mborzyszkowski.petrinet.simple.ITransaction;
-import pg.mborzyszkowski.petrinet.simple.Transaction;
+import pg.mborzyszkowski.petrinet.generic.edge.Direction;
+import pg.mborzyszkowski.petrinet.generic.transaction.ITransaction;
+import pg.mborzyszkowski.petrinet.generic.transaction.Transaction;
 import pg.mborzyszkowski.petrinet.stochastic.StochasticPetriNet;
+import pg.mborzyszkowski.petrinet.stochastic.StochasticPlace;
 import pg.mborzyszkowski.petrinet.stochastic.StochasticTransactionDecorator;
 
 public class MainFirstStochastic {
@@ -14,11 +15,11 @@ public class MainFirstStochastic {
         int R  = 0;
 
         StochasticPetriNet petriNet =  new StochasticPetriNet();
-        Place s = petriNet.addPlace(new Place("S", S));
+        StochasticPlace s = petriNet.addPlace(new StochasticPlace("S", S));
         ITransaction infection = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("infection"), 0.00025));
-        Place i = petriNet.addPlace(new Place("I", I));
+        StochasticPlace i = petriNet.addPlace(new StochasticPlace("I", I));
         ITransaction recovery = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("recovery"), 0.1));
-        Place r = petriNet.addPlace(new Place("R", R));
+        StochasticPlace r = petriNet.addPlace(new StochasticPlace("R", R));
 
         petriNet.addRegular(1, s, infection, Direction.TO_TRANSACTION);
         petriNet.addRegular(1, i, infection, Direction.TO_TRANSACTION);

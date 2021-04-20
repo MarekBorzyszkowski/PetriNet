@@ -1,4 +1,4 @@
-package pg.mborzyszkowski.petrinet;
+package pg.mborzyszkowski.petrinet.generic;
 
 public abstract class Node {
 	private String name;
