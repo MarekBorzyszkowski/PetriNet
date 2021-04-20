@@ -7,10 +7,10 @@ public class Edge<PL extends Place> {
 	private int valueAttribute;
 
 	private PL place;
-	private ITransaction transaction;
+	private ITransaction<PL> transaction;
 	private Direction direction;
 
-	public Edge(int valueAttribute, PL place, ITransaction transaction, Direction direction) {
+	public Edge(int valueAttribute, PL place, ITransaction<PL> transaction, Direction direction) {
 		this.valueAttribute = valueAttribute;
 		this.place = place;
 		this.transaction = transaction;
@@ -21,7 +21,7 @@ public class Edge<PL extends Place> {
 			transaction.addIncoming(this);
 	}
 
-	public Edge(PL place, ITransaction transaction, Direction direction) {
+	public Edge(PL place, ITransaction<PL> transaction, Direction direction) {
 		this(1, place, transaction, direction);
 	}
 
@@ -33,7 +33,7 @@ public class Edge<PL extends Place> {
 		return place;
 	}
 
-	public ITransaction getTransaction() {
+	public ITransaction<PL> getTransaction() {
 		return transaction;
 	}
 

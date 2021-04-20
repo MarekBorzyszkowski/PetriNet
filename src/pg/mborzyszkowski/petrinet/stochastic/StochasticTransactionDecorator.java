@@ -21,9 +21,9 @@ public class StochasticTransactionDecorator extends TransactionDecorator<Stochas
 		for(Edge<StochasticPlace> inEdge : getIncoming()){
 			outgoingFromTransaction = getOutgoing().stream().filter(edge -> edge.getPlace() == inEdge.getPlace()).collect(Collectors.toList());
 			if (! outgoingFromTransaction.isEmpty())
-				lambda *= (outgoingFromTransaction.get(0).getValueAttribute()-inEdge.getValueAttribute()) * (Integer)inEdge.getPlace().getNumberOfTokens();
+				lambda *= (outgoingFromTransaction.get(0).getValueAttribute()-inEdge.getValueAttribute()) * inEdge.getPlace().getNumberOfTokens().doubleValue();
 			else
-				lambda *= inEdge.getValueAttribute()*(Integer)inEdge.getPlace().getNumberOfTokens();
+				lambda *= inEdge.getValueAttribute() * inEdge.getPlace().getNumberOfTokens().doubleValue();
 		}
 		return lambda;
 	}

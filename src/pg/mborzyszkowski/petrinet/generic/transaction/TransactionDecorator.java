@@ -51,4 +51,11 @@ public class TransactionDecorator<PL extends Place> implements ITransaction<PL> 
 	public void execute() {
 		transaction.execute();
 	}
+
+	@Override
+	public String toString() {
+		return "TransactionDecorator{" +
+				"transaction=" + transaction +
+				'}';
+	}
 }

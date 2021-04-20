@@ -48,18 +48,18 @@ public class Transaction<PL extends Place> extends Node implements ITransaction<
 			return false;
 		else
 			return this.incoming.stream()
-						.map(e -> e.canExecute())
+						.map(Edge::canExecute)
 						.reduce(true, (result, edgeCanExecute)  -> result & edgeCanExecute)
 					&
 					this.outgoing.stream()
-							.map(e -> e.canExecute())
+							.map(Edge::canExecute)
 							.reduce(true, (result, edgeCanExecute)  -> result & edgeCanExecute);
 	}
 
 	@Override
 	public void execute(){
-		this.incoming.stream().forEach(edge -> edge.execute());
-		this.outgoing.stream().forEach(edge -> edge.execute());
+		this.incoming.forEach(Edge::execute);
+		this.outgoing.forEach(Edge::execute);
 	}
 
 	@Override

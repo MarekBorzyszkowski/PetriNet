@@ -19,7 +19,7 @@ public class ContinuousTransactionDecorator extends TransactionDecorator<Continu
 	@Override
 	public String toString() {
 		return "ContinuousTransactionDecorator{" + super.toString() +
-				"parameter=" + parameter +
+				", parameter=" + parameter +
 				"} ";
 	}
 

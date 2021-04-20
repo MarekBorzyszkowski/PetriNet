@@ -17,13 +17,13 @@ public class MainSecondContinuous {
 
         ContinuousPetriNet petriNet =  new ContinuousPetriNet();
         ContinuousPlace s = petriNet.addPlace(new ContinuousPlace("S", S));
-        ITransaction infection = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction("infection"), 0.00025));
+        ITransaction<ContinuousPlace> infection = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction<>("infection"), 0.00025));
         ContinuousPlace i = petriNet.addPlace(new ContinuousPlace("I", I));
-        ITransaction recovery = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction("recovery"), 0.1));
+        ITransaction<ContinuousPlace> recovery = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction<>("recovery"), 0.1));
         ContinuousPlace r = petriNet.addPlace(new ContinuousPlace("R", R));
         ContinuousPlace v = petriNet.addPlace(new ContinuousPlace("V", V));
-        ITransaction vaccination = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction("vaccination"), 0.01));
-        ITransaction vinfection = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction("vinfection"), 0.0000375));
+        ITransaction<ContinuousPlace> vaccination = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction<>("vaccination"), 0.01));
+        ITransaction<ContinuousPlace> vinfection = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction<>("vinfection"), 0.0000375));
 
         petriNet.addRegular(1, s, infection, Direction.TO_TRANSACTION);
         petriNet.addRegular(1, i, infection, Direction.TO_TRANSACTION);

@@ -16,9 +16,9 @@ public class MainFirstStochastic {
 
         StochasticPetriNet petriNet =  new StochasticPetriNet();
         StochasticPlace s = petriNet.addPlace(new StochasticPlace("S", S));
-        ITransaction infection = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("infection"), 0.00025));
+        ITransaction<StochasticPlace> infection = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction<>("infection"), 0.00025));
         StochasticPlace i = petriNet.addPlace(new StochasticPlace("I", I));
-        ITransaction recovery = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("recovery"), 0.1));
+        ITransaction<StochasticPlace> recovery = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction<>("recovery"), 0.1));
         StochasticPlace r = petriNet.addPlace(new StochasticPlace("R", R));
 
         petriNet.addRegular(1, s, infection, Direction.TO_TRANSACTION);

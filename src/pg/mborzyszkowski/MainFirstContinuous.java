@@ -16,9 +16,9 @@ public class MainFirstContinuous {
 
         ContinuousPetriNet petriNet =  new ContinuousPetriNet();
         ContinuousPlace s = petriNet.addPlace(new ContinuousPlace("S", S));
-        ITransaction infection = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction("infection"), 0.00025));
+        ITransaction<ContinuousPlace> infection = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction<>("infection"), 0.00025));
         ContinuousPlace i = petriNet.addPlace(new ContinuousPlace("I", I));
-        ITransaction recovery = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction("recovery"), 0.1));
+        ITransaction<ContinuousPlace> recovery = petriNet.addTransaction(new ContinuousTransactionDecorator(new Transaction<>("recovery"), 0.1));
         ContinuousPlace r = petriNet.addPlace(new ContinuousPlace("R", R));
 
         petriNet.addRegular(1, s, infection, Direction.TO_TRANSACTION);

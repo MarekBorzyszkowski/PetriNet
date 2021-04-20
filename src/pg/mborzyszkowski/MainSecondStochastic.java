@@ -17,13 +17,13 @@ public class MainSecondStochastic {
 
         StochasticPetriNet petriNet =  new StochasticPetriNet();
         StochasticPlace s = petriNet.addPlace(new StochasticPlace("S", S));
-        ITransaction infection = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("infection"), 0.00025));
+        ITransaction<StochasticPlace> infection = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction<>("infection"), 0.00025));
         StochasticPlace i = petriNet.addPlace(new StochasticPlace("I", I));
-        ITransaction recovery = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("recovery"), 0.1));
+        ITransaction<StochasticPlace> recovery = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction<>("recovery"), 0.1));
         StochasticPlace r = petriNet.addPlace(new StochasticPlace("R", R));
         StochasticPlace v = petriNet.addPlace(new StochasticPlace("V", V));
-        ITransaction vaccination = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("vaccination"), 0.01));
-        ITransaction vinfection = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction("vinfection"), 0.0000375));
+        ITransaction<StochasticPlace> vaccination = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction<>("vaccination"), 0.01));
+        ITransaction<StochasticPlace> vinfection = petriNet.addTransaction(new StochasticTransactionDecorator(new Transaction<>("vinfection"), 0.0000375));
 
         petriNet.addRegular(1, s, infection, Direction.TO_TRANSACTION);
         petriNet.addRegular(1, i, infection, Direction.TO_TRANSACTION);
